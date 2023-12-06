@@ -94,6 +94,7 @@ const merge = (nums1, m, nums2, n) => {
             nums1[k] = nums2[idx2];
             idx2--;
         }
+        console.log(nums1);
         k--;
     }
     while(idx2 >= 0){
