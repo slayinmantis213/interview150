@@ -47,16 +47,15 @@
 // nums is sorted in non-decreasing order.
 
 //mine
-const removeDuplicates = (nums) => {
-    for(let i = 0; i < nums.length; i++){
-        while(nums[i] === nums[i+1]){
-            nums.splice(i+1,1)
-        }
-        console.log(nums)
-    }
-    return nums.length;
-}
-console.log(removeDuplicates([1,1,2,2,2,2,2,5,5]));
+// const removeDuplicates = (nums) => {
+//     for(let i = 0; i < nums.length; i++){
+//         while(nums[i] === nums[i+1]){
+//             nums.splice(i+1,1)
+//         }
+//         console.log(nums)
+//     }
+//     return nums.length;
+// }
 
 //solution
 function removeDuplicates(nums) {
@@ -64,13 +63,46 @@ function removeDuplicates(nums) {
         return 0;
     }
 
-    let k = 1; // Initialize the count of unique elements to 1
+    let k = 1;
     for (let i = 1; i < nums.length; i++) {
         if (nums[i] !== nums[k - 1]) {
-            nums[k] = nums[i]; // Overwrite the next unique element
+            nums[k] = nums[i];
             k++;
         }
     }
+    return k;
+}
+console.log(removeDuplicates([1,1,1,2,2,3]));
 
+//REMOVE DUPLICATES 2
+
+//MINE
+function removeDuplicates(nums) {
+    if (nums.length <=2) {
+        return nums.length;
+    }
+
+    let k = 2;
+    for (let i = 2; i < nums.length; i++) {
+        if (nums[i] !== nums[k - 2]) {
+            nums[k] = nums[i];
+            k++;
+        }
+    }
+    return k;
+}
+//THEIRS
+function removeDuplicates(nums) {
+    if (nums.length <=2) {
+        return nums.length;
+    }
+
+    let k = 2;
+    for (let i = 2; i < nums.length; i++) {
+        if (nums[i] !== nums[k - 2] || nums[i] !== nums[k - 1]) {
+            nums[k] = nums[i];
+            k++;
+        }
+    }
     return k;
 }
