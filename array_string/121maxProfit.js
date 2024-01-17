@@ -62,16 +62,16 @@ const maxProfit = (prices) => {
 
 //THEIRS
 
-var maxProfit = function(prices) {
+// var maxProfit = function(prices) {
     
-    let profitFromPriceGain = 0;
+//     let profitFromPriceGain = 0;
     
-    for( let i = 0 ; i < prices.length-1 ; i++ ){
+//     for( let i = 0 ; i < prices.length-1 ; i++ ){
         
-        if( prices[i] < prices[i+1] ){
-            profitFromPriceGain += (  prices[i+1] - prices[i] );
-        }
-    }
+//         if( prices[i] < prices[i+1] ){
+//             profitFromPriceGain += (  prices[i+1] - prices[i] );
+//         }
+//     }
     
-    return profitFromPriceGain;
-}
+//     return profitFromPriceGain;
+// }
