@@ -1,3 +1,4 @@
+// 121
 // You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
 // You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
@@ -24,18 +25,53 @@
 // 1 <= prices.length <= 105
 // 0 <= prices[i] <= 104
 
+// const maxProfit = (prices) => {
+//     let buy = prices[0];
+//     let profit = 0;
+//     for(let i = 0; i < prices.length; i++){
+//         if(prices[i] < buy && i < prices.length-1){
+//             buy = prices[i];
+//         }
+//         if(prices[i] - buy > profit){
+//             profit = prices[i] - buy;
+//         }
+//     }
+//     return profit;
+// }
+
+
+// 122. Best Time to Buy and Sell Stock II
+
+// On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time.
+
+// However, you can buy it then immediately sell it on the same day.
+
+// Find and return the maximum profit you can achieve.
+
+//MINE
+
 const maxProfit = (prices) => {
-    let buy = prices[0];
     let profit = 0;
-    for(let i = 0; i < prices.length; i++){
-        if(prices[i] < buy && i < prices.length-1){
-            buy = prices[i];
-        }
-        if(prices[i] - buy > profit){
-            profit = prices[i] - buy;
+    for(let i = 0; i < prices.length - 1; i++){
+        if(prices[i + 1] > prices[i]){
+            profit += prices[i + 1] - prices[i];
         }
     }
     return profit;
 }
 
-console.log(maxProfit([2,1,2,1,0,1,2]))
+//THEIRS
+
+var maxProfit = function(prices) {
+    
+    let profitFromPriceGain = 0;
+    
+    for( let i = 0 ; i < prices.length-1 ; i++ ){
+        
+        if( prices[i] < prices[i+1] ){
+            profitFromPriceGain += (  prices[i+1] - prices[i] );
+        }
+    }
+    
+    return profitFromPriceGain;
+}
