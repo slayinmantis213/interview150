@@ -13,7 +13,7 @@ var canJump = function(nums) {
         if(i > jump){
             return false;
         }
-        jump = Math.max(jump, nums[i] + i)
+        jump = Math.max(jump, nums[i] + i);
         if(jump >= nums.length - 1){
             return true;
         }
@@ -21,7 +21,7 @@ var canJump = function(nums) {
     return false;
 };
 
-console.log(canJump([1,0,1,0]))
+console.log(canJump([2,2,1,0,1,3]))
 
 // thiers
 
