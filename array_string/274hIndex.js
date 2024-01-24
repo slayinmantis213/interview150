@@ -28,4 +28,4 @@ var hIndex = function (citations) {
 };
 
 const citations = [3, 0, 6, 1, 5];
-console.log(hIndex(citations)); //
+console.log(hIndex(citations));
