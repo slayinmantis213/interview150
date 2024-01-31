@@ -6,29 +6,21 @@
 
 // Notice that you may not slant the container.
 
-var maxArea = function(height) {
-    let i = 0;
-    let j = height.length - 1;
-    let bool = true;
-    if(height.length === 2){
-        return area(i,j,j-i);
+var maxArea = function (height) {
+    let i = 0,
+        j = height.length - 1,
+        maxArea = 0;
+
+    while (i < j) {
+        maxArea = Math.max(area(i, j, height), maxArea);
+        height[i] < height[j] ? i++ : j--;
     }
-    while(bool){
-        bool = false;
-        const width = j - i;
-        if(area(i, j, width) < area(i + 1, j, width - 1)){
-            i++;
-            bool = true;
-        }
-        if(area(i , j, width) < area(i, j - 1, width - 1)){
-            j--;
-            bool = true;
-        }
-    }
-    function area(i,j,width){
-        return height[i] > height[j] ? height[j] * (width) : height[i] * (width);
-    }
-    return height[i] > height[j] ? height[j] * (j - i) : height[i] * (j - i);
+
+    return maxArea;
 };
 
-console.log(maxArea([2,3,4,5,18,17,6]));
+var area = function (i, j, height) {
+    return height[i] < height[j] ? height[i] * (j - i) : height[j] * (j - i);
+};
+
+console.log(maxArea([2, 3, 4, 5, 18, 17, 6]));
