@@ -18,7 +18,6 @@
 
 // Input: ransomNote = "aa", magazine = "aab"
 // Output: true
- 
 
 // Constraints:
 
