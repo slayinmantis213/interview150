@@ -15,9 +15,7 @@ var rob = function (nums) {
       }
   
       const ans = Math.max(robFrom(i + 1, nums), robFrom(i + 2, nums) + nums[i]);
-      // console.log(memo[i]);
       memo[i] = ans;
-      // console.log(memo[i]);
       return ans;
     };
   
