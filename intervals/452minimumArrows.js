@@ -8,6 +8,73 @@
 
 // Given the array points, return the minimum number of arrows that must be shot to burst all balloons.
 
-var findMinArrowShots = function(points) {
-    
+/**
+ * @param {number[][]} points
+ * @return {number}
+ */
+var findMinArrowShots = function (points) {
+  let arrowCount = 1;
+  points.sort((a, b) => a[1] - b[1]);
+  let end = points[0][1];
+
+  for (let i = 1; i < points.length; i++) {
+    if (points[i][0] <= end) {
+      // The current balloon can be burst by the current arrow
+      continue;
+    }
+    // The current balloon cannot be burst by the current arrow
+    // Update the firstBalloon variable to the current balloon
+    end = points[i][1];
+    arrowCount++;
+  }
+  return arrowCount;
 };
+
+const points = [
+  [1, 2],
+  [3, 4],
+  [5, 6],
+  [7, 8],
+];
+const points2 = [
+  [10, 16],
+  [2, 8],
+  [1, 6],
+  [7, 12],
+];
+
+const points3 = [
+  [3, 9],
+  [7, 12],
+  [3, 8],
+  [6, 8],
+  [9, 10],
+  [2, 9],
+  [0, 9],
+  [3, 9],
+  [0, 6],
+  [2, 8],
+];
+console.log(findMinArrowShots(points3));
+
+/**
+(_______________________)
+(_______________)
+   (____________________)
+   (_________________)
+      (______________)
+      (_________________)
+      (_________________)
+               (_____)
+                        (___)
+                  (_______________)
+1  2  3  4  5  6  7  8  9  10 11 12
+ */
+
+/**
+firstBalloon = [7,12]
+i = 2
+points[i] = [7,12]
+arrow = 2
+
+*/
