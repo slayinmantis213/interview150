@@ -58,9 +58,3 @@ function cloneGraph (root) {
     return visited.get(root.val);
 }
 
-var cloneGraph = function(node) {
-    let clone;
-    // capture value
-    // add neighbors
-
-};
