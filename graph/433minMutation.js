@@ -19,26 +19,79 @@
 @return {number}
 */
 var minMutation = function (startGene, endGene, bank) {
-    // start gene to end gene
-    // each step only one character from the string can change
-    // in each step the new string needs to be present in bank
-    // find shortest path between start and end with each step along the way present in bank.
-
     const graph = new Map(); // key is string, and value is neighbors
-    graph.set(startGene, []);
+    graph.set(startGene, new Set());
 
     for (const mutation of bank) {
         if (!graph.has(mutation)) {
-            graph.set(mutation, []);
+            graph.set(mutation, new Set());
         }
     }
     if (!graph.has(endGene)) return -1;
 
     // populate the neighbors
+    const splits = []
     for (const mutation of graph.keys()) {
-        console.log(mutation);
         const split = mutation.split("");
-        console.log(split);
-        const q = []
+        splits.push(split);
     }
-}; 
+    for (let i = 0; i < splits.length; i++) {
+        for (let j = i + 1; j < splits.length; j++) {
+            const count = compareStrings(splits[i], splits[j])
+            if (count !== 1) {
+                continue;
+            }
+            graph.get(splits[i].join('')).add(splits[j].join(''))
+            graph.get(splits[j].join('')).add(splits[i].join(''))
+        }
+    }
+    if (graph.get(startGene).has(endGene)) {
+        return 1;
+    }
+    let count = 0;
+    const q = [startGene];
+    const visited = new Set();
+    while (q.length > 0) {
+        //prolly some logic in here
+        let curr = q.shift()
+        if(visited.has(curr)){
+            continue;
+        }
+        count++;
+        visited.add(curr);
+
+        curr = graph.get(curr)
+        for (const mutation of curr.keys()) {
+            q.push(mutation)
+            if (mutation === endGene) {
+                return count;
+            }
+        }
+    }
+    return -1;
+};
+
+const compareStrings = (splits1, splits2) => {
+    let count = 0;
+    for (let i = 0; i < splits1.length; i++) {
+        if (splits1[i] !== splits2[i]) {
+            count++;
+        }
+        if (count > 1) {
+            break;
+        }
+    }
+    return count;
+}
+
+const startGene = "AACCGGTT", endGene = "AAACGGTA", bank = ["AACCGGTA", "AACCGCTA", "AAACGGTA"]
+
+
+const startGene1 =
+    "AAAAACCC",
+    endGene1 =
+        "AACCCCCC",
+    bank1 =
+        ["AAAACCCC", "AAACCCCC", "AACCCCCC"]
+
+console.log(minMutation(startGene1, endGene1, bank1))
