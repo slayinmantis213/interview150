@@ -12,7 +12,6 @@
 // Note that the starting point is assumed to be valid, so it might not be included in the bank.
 
 /**
- 
 @param {string} startGene
 @param {string} endGene
 @param {string[]} bank
