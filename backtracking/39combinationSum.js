@@ -28,6 +28,7 @@ var combinationSum = function(candidates, target) {
     const dfs = (index, sum, target, candidates, path) => {
         if(sum >= target){
             if(sum === target){
+                console.log(path)
                 res.push([...path]);
             }
             return;
@@ -35,7 +36,6 @@ var combinationSum = function(candidates, target) {
         for(let i = index; i < candidates.length; i++){
             path.push(candidates[i])
             sum += candidates[i];
-            console.log(path)
             dfs(i, sum, target, candidates, path);
             sum -= path.pop();
         }
