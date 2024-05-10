@@ -107,6 +107,7 @@ var exist = function(board, word) {
                 }
             }
         }
+        visited.delete(`${y}, ${x}`)
         return false;
     }
     return false;
@@ -117,6 +118,6 @@ var exist = function(board, word) {
     ["S","F","E","S"],
     ["A","D","E","E"]
   ];
-  const word = "ABCESEEEFS";
+  const word = "SEE";
   
   console.log(exist(board, word));
