@@ -7,22 +7,18 @@
 
 
 var coinChange = function(coins, amount) {
-    const a  = amount
-    const solutions = []
-    const dp  = (i, res, coins, amount) => {
-        amount -= coins[i]
-        if(amount > 0){
-            dp(i, res + 1, coins, amount)
+    const dp = Array(amount + 1).fill(Infinity);
+    dp[0] = 0;
+    for(let i = 1; i <= amount; i++){
+        for(let coin of coins) {
+            if(coin <= i){
+                dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+            }
         }
-        else if(amount === 0){
-            solutions.push(res + 1)
-        }
-        else{
-            dp(i + 1, 0, coins, a);
-        }
-    } 
-    dp(0, 0, coins, amount);
+    }
+    return dp[amount] === Infinity ? -1 : dp[amount];
 };
+
 const coins =
 [186,419,83,408]
 const amount =
@@ -30,3 +26,4 @@ const amount =
 
 
 console.log(coinChange(coins, amount))
+console.log("expected 20")
